@@ -121,7 +121,7 @@ public class EnemyBehavior : MonoBehaviour {
 			stunCount++;
 			endStunTime = Time.realtimeSinceStartup + stunInterval;
 			if (stunCount >= 3) {
-				ParticleSystem ps = Instantiate(explosion, transform.position, Quaternion.identity) as ParticleSystem;
+				Instantiate(explosion, transform.position, Quaternion.identity);
 				Destroy(gameObject);
 				worldScript.enemyCount--;
 			}
