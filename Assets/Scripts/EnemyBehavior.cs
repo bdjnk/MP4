@@ -121,7 +121,9 @@ public class EnemyBehavior : MonoBehaviour {
 			stunCount++;
 			endStunTime = Time.realtimeSinceStartup + stunInterval;
 			if (stunCount >= 3) {
-				Instantiate(explosion, transform.position, Quaternion.identity);
+				// this is stupid, figure out how to keep them layered right...
+				Vector3 pos = new Vector3(transform.position.x, 1f, transform.position.z);
+				Instantiate(explosion, pos, Quaternion.identity);
 				Destroy(gameObject);
 				worldScript.enemyCount--;
 			}
