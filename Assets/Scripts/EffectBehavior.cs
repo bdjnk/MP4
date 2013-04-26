@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class ExplosionBehavior : MonoBehaviour {
+public class EffectBehavior : MonoBehaviour {
 	void Start() {
 		Destroy(gameObject, 2f);    
 	}
