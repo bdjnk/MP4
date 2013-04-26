@@ -22,7 +22,7 @@ public class ShoeMenu : MonoBehaviour
 		box.Height = Screen.height;
 		box.Text = "Shoe Wars";
 		box.Style.alignment = TextAnchor.UpperCenter;
-		box.Style.fontSize = (int)(Screen.width * 0.1f); 
+		box.Style.fontSize = (int)(Screen.width * 0.1f);
 	
 		nameLabel = new Label(box.Width/2f - box.Width * 0.3f*1.5f/2, box.Height - 2f);
 		nameLabel.Width = box.Width * 0.3f * 1.5f;
@@ -61,7 +61,7 @@ public class ShoeMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		// empty
 	}
 	
 	void OnGUI()
@@ -86,7 +86,8 @@ public class ShoeMenu : MonoBehaviour
 		{
 			label.Text = "Exit Game";
 			Application.Quit();
-		}	else if(aboutButton.Active)
+		}
+		else if(aboutButton.Active)
 		{
 			label.Text = "About Positive Games";
 			Application.LoadLevel(1);

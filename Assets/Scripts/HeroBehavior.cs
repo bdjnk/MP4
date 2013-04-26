@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class HeroBehavior : MonoBehaviour {
 	
-	SpriteSheetManager mSpriteManager = null;
+	private SpriteSheetManager spriteManager = null;
 	public int mRowOfSpriteElements = 0;
 	public int mColumnOfSpriteElements = 0;
 	public int mBlankPixelsToLeft = 0;
@@ -13,12 +13,17 @@ public class HeroBehavior : MonoBehaviour {
 	public int mBlankPixelsToBottom = 0;
 	
 	// per action sprite animation information 
-	private const float kWalkPeriod = 0.25f; // 0.25 second
-	private const float kRunPeriod = 0.1f;  // 0.1f second update interveral
-	private SpriteActionDefinition mWalkUp = new SpriteActionDefinition(0, 0, 3, kWalkPeriod, true); // Row, BeginColumn, EndColumn
-	private SpriteActionDefinition mWalkDown = new SpriteActionDefinition(0, 0, 3, kWalkPeriod, true);
+	private const float walkPeriod = 0.25f; // update interveral in seconds
+	private const float runPeriod = 0.1f;
 	
-	private SpriteActionDefinition mStop = new SpriteActionDefinition(0, 0, 0, kWalkPeriod, false); // to stop
+	// Row, beginColumn, endColumn. Columns are read right to left.
+	private SpriteActionDefinition walkUp = new SpriteActionDefinition(0, 2, 0, walkPeriod, true); 
+	private SpriteActionDefinition walkDown = new SpriteActionDefinition(0, 0, 2, walkPeriod, true);
+	
+	private SpriteActionDefinition walkLeft = new SpriteActionDefinition(0, 1, 0, walkPeriod, true);
+	private SpriteActionDefinition walkRight = new SpriteActionDefinition(0, 1, 2, walkPeriod, true);
+	
+	private SpriteActionDefinition stop = new SpriteActionDefinition(0, 1, 1, walkPeriod, false); // to stop
 	
 	// to support time ...
 	private float preEggSpawnTime = -1f; // 
@@ -34,10 +39,13 @@ public class HeroBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		mSpriteManager = new SpriteSheetManager(renderer.material, 
+		spriteManager =
+			new SpriteSheetManager(renderer.material, 
 			mRowOfSpriteElements, mColumnOfSpriteElements,
 			mBlankPixelsToLeft, mBlankPixelsToRight,
 			mBlankPixelsToTop, mBlankPixelsToBottom);
+		spriteManager.SetSpriteAnimationAciton(stop);
+		
 		worldScript = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
 		eggPrefab = Resources.Load("Prefabs/Egg") as GameObject;
 	}
@@ -53,19 +61,19 @@ public class HeroBehavior : MonoBehaviour {
 		transform.RotateAround(Vector3.up, Input.GetAxis("Horizontal") * (rotateSpeed * Time.smoothDeltaTime));
 		
 		// Must call to see the sprite movement!
-		mSpriteManager.UpdateSpriteAnimation();
+		spriteManager.UpdateSpriteAnimation();
 		
 		if (Input.GetKeyDown(KeyCode.UpArrow)) {
-			mSpriteManager.SetSpriteAnimationAciton(mWalkUp);
+			spriteManager.SetSpriteAnimationAciton(walkUp);
 		}
 		if (Input.GetKeyDown(KeyCode.DownArrow)) {
-			mSpriteManager.SetSpriteAnimationAciton(mWalkDown);
+			spriteManager.SetSpriteAnimationAciton(walkDown);
 		}	
 		if (Input.GetKeyUp(KeyCode.UpArrow)) {
-			mSpriteManager.SetSpriteAnimationAciton(mStop);
+			spriteManager.SetSpriteAnimationAciton(stop);
 		}
 		if (Input.GetKeyUp(KeyCode.DownArrow)) {
-			mSpriteManager.SetSpriteAnimationAciton(mStop);
+			spriteManager.SetSpriteAnimationAciton(stop);
 		}	
 		
 		if (Input.GetAxis ("Fire1") > 0f) { // this is Left-Control
