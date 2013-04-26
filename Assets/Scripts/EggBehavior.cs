@@ -9,7 +9,9 @@ public class EggBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		 worldScript = GameObject.Find ("GameManager").GetComponent<GlobalBehavior>();
+		 worldScript = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
+		
+		audio.enabled = true;
 	}
 	
 	// Update is called once per frame
