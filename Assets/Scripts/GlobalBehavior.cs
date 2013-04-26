@@ -44,6 +44,10 @@ public class GlobalBehavior : MonoBehaviour {
 		if (Input.GetButtonUp("Jump")) {
 			movement = !movement;
 		}
+		//left alt key added to go back to main menu
+		if (Input.GetButtonUp("Fire2")) {
+			Application.LoadLevel(0);
+		}		
 		
 		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount;
 	}
