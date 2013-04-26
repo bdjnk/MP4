@@ -4,6 +4,22 @@ using System.Collections.Generic;
 
 public class HeroBehavior : MonoBehaviour {
 	
+	SpriteSheetManager mSpriteManager = null;
+	public int mRowOfSpriteElements = 0;
+	public int mColumnOfSpriteElements = 0;
+	public int mBlankPixelsToLeft = 0;
+	public int mBlankPixelsToRight = 0;
+	public int mBlankPixelsToTop = 0;
+	public int mBlankPixelsToBottom = 0;
+	
+	// per action sprite animation information 
+	private const float kWalkPeriod = 0.25f; // 0.25 second
+	private const float kRunPeriod = 0.1f;  // 0.1f second update interveral
+	private SpriteActionDefinition mWalkUp = new SpriteActionDefinition(0, 0, 3, kWalkPeriod, true); // Row, BeginColumn, EndColumn
+	private SpriteActionDefinition mWalkDown = new SpriteActionDefinition(0, 0, 3, kWalkPeriod, true);
+	
+	private SpriteActionDefinition mStop = new SpriteActionDefinition(0, 0, 0, kWalkPeriod, false); // to stop
+	
 	// to support time ...
 	private float preEggSpawnTime = -1f; // 
 	private float eggSpawnInterval = 0.1f; // in seconds
@@ -18,6 +34,10 @@ public class HeroBehavior : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
+		mSpriteManager = new SpriteSheetManager(renderer.material, 
+			mRowOfSpriteElements, mColumnOfSpriteElements,
+			mBlankPixelsToLeft, mBlankPixelsToRight,
+			mBlankPixelsToTop, mBlankPixelsToBottom);
 		worldScript = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
 		eggPrefab = Resources.Load("Prefabs/Egg") as GameObject;
 	}
@@ -31,6 +51,22 @@ public class HeroBehavior : MonoBehaviour {
 		transform.position = worldScript.WorldBoundCorrection(transform.collider.bounds);
 		
 		transform.RotateAround(Vector3.up, Input.GetAxis("Horizontal") * (rotateSpeed * Time.smoothDeltaTime));
+		
+		// Must call to see the sprite movement!
+		mSpriteManager.UpdateSpriteAnimation();
+		
+		if (Input.GetKeyDown(KeyCode.UpArrow)) {
+			mSpriteManager.SetSpriteAnimationAciton(mWalkUp);
+		}
+		if (Input.GetKeyDown(KeyCode.DownArrow)) {
+			mSpriteManager.SetSpriteAnimationAciton(mWalkDown);
+		}	
+		if (Input.GetKeyUp(KeyCode.UpArrow)) {
+			mSpriteManager.SetSpriteAnimationAciton(mStop);
+		}
+		if (Input.GetKeyUp(KeyCode.DownArrow)) {
+			mSpriteManager.SetSpriteAnimationAciton(mStop);
+		}	
 		
 		if (Input.GetAxis ("Fire1") > 0f) { // this is Left-Control
 			
