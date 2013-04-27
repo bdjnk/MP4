@@ -55,7 +55,7 @@ public class GlobalBehavior : MonoBehaviour {
 			Application.LoadLevel(0);
 		}		
 		
-		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount + "\ntsll: " + ;
+		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount;
 	}
 	
 	#region game window world size bound support
