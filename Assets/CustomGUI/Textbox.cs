@@ -50,6 +50,9 @@ public class Textbox : CustomGUI
 
     protected override bool Update()
     {
+		style.normal.textColor = Color.white;
+		style.active.textColor = Color.white;
+		style.hover.textColor = Color.white;
 		//if maximum length is specified
         if (maxLength != -1)
 		{
@@ -69,7 +72,7 @@ public class Textbox : CustomGUI
     protected override void InitializeStyle()
     {
         style = new GUIStyle();
-        NormalTexture = Resources.Load(normalTextureDir) as Texture2D;
+		NormalTexture = Resources.Load(normalTextureDir) as Texture2D;
         HoverTexture = Resources.Load(hoverTextureDir) as Texture2D;
         ActiveTexture = Resources.Load(activeTextureDir) as Texture2D;
     }

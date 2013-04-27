@@ -33,7 +33,10 @@ public Label()
 
     protected override bool Update()
     {
-        GUI.Label(rect, text, style);
+		style.normal.textColor = Color.white;
+		style.active.textColor = Color.white;
+		style.hover.textColor = Color.white;
+		GUI.Label(rect, text, style);
 		return false;
     }
 	#endregion
@@ -43,7 +46,7 @@ public Label()
     protected override void InitializeStyle()
     {
         style = new GUIStyle();
-        NormalTexture = Resources.Load(normalTextureDir) as Texture2D;
+		NormalTexture = Resources.Load(normalTextureDir) as Texture2D;
         HoverTexture = Resources.Load(hoverTextureDir) as Texture2D;
         ActiveTexture = Resources.Load(activeTextureDir) as Texture2D;
        

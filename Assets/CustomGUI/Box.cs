@@ -34,6 +34,9 @@ public class Box : CustomGUI
 
     protected override bool Update()
     {
+		style.normal.textColor =  Color.white;
+		style.active.textColor =  Color.white;
+		style.hover.textColor =  Color.white;
         GUI.Box(rect, text, style);
 		return false;
     }

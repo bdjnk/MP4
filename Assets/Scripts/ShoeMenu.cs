@@ -27,17 +27,13 @@ public class ShoeMenu : MonoBehaviour
 		box.HoverTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		box.Style.alignment = TextAnchor.UpperCenter;
 		box.Style.fontSize = (int)(Screen.width * 0.1f);
-	
+		
 		nameLabel = new Label(box.Width/2f - box.Width * 0.3f*1.5f/2, box.Height - 2f);
 		nameLabel.Width = box.Width * 0.3f * 1.5f;
 		nameLabel.Height = box.Width * 0.3f * 0.25f;
-		nameLabel.Style.active.textColor.Equals(Color.red);
-		//nameLabel.Style.normal.textColor = Color.red;
-		//nameLabel.Style.active.textColor = Color.red;
-		//nameLabel.Style.hover.textColor = Color.red;
+		nameLabel.Text = "PositiveGames";
 		nameLabel.Style.alignment = TextAnchor.MiddleCenter;
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.1f);
-		nameLabel.Text = "PositiveGames";
 		
 		playButton = new Button(box.Width/2f - box.Width*0.3f/2f, box.Height * 0.25f);
 		playButton.Width = box.Width * 0.3f;
@@ -59,14 +55,7 @@ public class ShoeMenu : MonoBehaviour
 		aboutButton.Text = "About";
 		aboutButton.HoverTexture = Resources.Load ("Textures/menu-about") as Texture2D;
 		aboutButton.Style.alignment = TextAnchor.MiddleCenter;
-		/*
-		label = new Label(box.Width/2f - playButton.Width*1.5f/2f, aboutButton.Y + aboutButton.Height * 1.2f);
-		label.Width = playButton.Width * 1.5f;
-		label.Height = playButton.Height;
-		label.Text = DEFAULT_LABEL_TEXT;
-		label.Style.alignment = TextAnchor.MiddleCenter;
-		label.Style.fontSize = (int)(label.Width * 0.1f);
-		*/
+
 	}
 	
 	// Update is called once per frame
@@ -82,11 +71,7 @@ public class ShoeMenu : MonoBehaviour
 		quitButton.OnGUI();
 		aboutButton.OnGUI();
 		nameLabel.OnGUI();
-		//repeatButton.OnGUI();
-		//label.OnGUI();
-		//textBox.OnGUI();
-		//checkBox.OnGUI();
-		
+
 		#region GUI Events
 		if(playButton.Active)
 		{
