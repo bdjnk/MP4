@@ -91,7 +91,7 @@ public class HeroBehavior : MonoBehaviour {
 					egg.transform.forward = transform.forward;
 					
 					worldScript.eggCount++;
-					worldScript.eggsShot++;
+					worldScript.shots++;
 				}
 			}
 		}
