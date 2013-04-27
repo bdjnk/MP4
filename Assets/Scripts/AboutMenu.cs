@@ -26,12 +26,16 @@ public class AboutMenu : MonoBehaviour
 		box.Height = Screen.height;
 		box.Text = "Shoe Wars";
 		box.Style.alignment = TextAnchor.UpperCenter;
+		box.NormalTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
+		box.ActiveTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
+		box.HoverTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		box.Style.fontSize = (int)(Screen.width * 0.08f); 
 	
 		backButton = new Button(box.Width/2f - box.Width*0.3f/2f, box.Height * 0.25f);
 		backButton.Width = box.Width * 0.3f;
 		backButton.Height = backButton.Width * 0.25f;
 		backButton.Text = "Return to Main Menu";
+		backButton.HoverTexture = Resources.Load ("Textures/menu-run") as Texture2D;
 		backButton.Style.alignment = TextAnchor.MiddleCenter;
 	
 		nameLabel = new Label(box.Width/2f - backButton.Width*1.5f/2, backButton.Y + backButton.Height * 1.2f);
