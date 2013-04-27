@@ -18,6 +18,12 @@ public class GlobalBehavior : MonoBehaviour {
 	public int enemyCount = 0;
 	public int eggCount = 0;
 	
+	// these will be used to calculate score
+	private int deadline = 60 * 2; // 60 * minutes
+	public int shots = 0;
+	public int hits = 0;
+	//score = ((hits/shots)*100)+(deadline)/Time.timeSinceLevelLoad
+	
 	// initialization
 	void Start () {
 		// World bound support
@@ -49,7 +55,7 @@ public class GlobalBehavior : MonoBehaviour {
 			Application.LoadLevel(0);
 		}		
 		
-		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount;
+		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount + "\ntsll: " + ;
 	}
 	
 	#region game window world size bound support

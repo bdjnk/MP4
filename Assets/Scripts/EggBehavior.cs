@@ -38,6 +38,7 @@ public class EggBehavior : MonoBehaviour {
 			Destroy(gameObject);
 			if (worldScript.eggCount > 0) { // shouldn't be neccessary
 				worldScript.eggCount--;
+				worldScript.hits++;
 			}
 		}
 	}
