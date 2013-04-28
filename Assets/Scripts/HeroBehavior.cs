@@ -78,7 +78,7 @@ public class HeroBehavior : MonoBehaviour {
 			spriteManager.SetSpriteAnimationAciton(stop);
 		}
 		
-		if (Input.GetAxis ("Fire1") > 0f) { // this is Left-Control
+		if (Input.GetAxis("Fire1") > 0f) { // this is Left-Control
 			
 			if ((Time.realtimeSinceStartup - preEggSpawnTime) > eggSpawnInterval) {
 				preEggSpawnTime = Time.realtimeSinceStartup;
