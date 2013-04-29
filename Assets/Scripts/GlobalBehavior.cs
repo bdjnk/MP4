@@ -64,6 +64,7 @@ public class GlobalBehavior : MonoBehaviour {
 		if (enemyCount == 0) {
 			// add end level dialog
 			info.text = "Victory!";
+			Application.LoadLevel(3);
 		}
 		else {
 			info.text = "enemy count: " + enemyCount +
