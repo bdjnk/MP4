@@ -12,17 +12,19 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	private GameObject enemyPrefab = null;
 	
-	private bool movement = false;
+	private bool movement = true;
 	
 	private GUIText info = null;
 	public int enemyCount = 0;
 	public int eggCount = 0;
 	
+	public int initialEnemyCount = 6;
+	
 	// these will be used to calculate score
 	private int deadline = 60 * 2; // 60 * minutes
 	public int shots = 0;
 	public int hits = 0;
-	//score = ((hits/shots)*100)+(deadline)/Time.timeSinceLevelLoad
+	//score = ((hits/shots)*100)+deadline/Time.timeSinceLevelLoad
 	
 	// initialization
 	void Start () {
@@ -31,7 +33,7 @@ public class GlobalBehavior : MonoBehaviour {
 		UpdateWorldBounds();
 		
 		enemyPrefab = Resources.Load("Prefabs/Enemy") as GameObject;
-		for (int i = 0; i < 50; i++) {
+		for (int i = 0; i < initialEnemyCount; i++) {
 			Instantiate(enemyPrefab);
 			enemyCount++;
 		}
@@ -43,6 +45,7 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	// called once per frame
 	void Update () {
+		/*
 		if (movement) {
 			SpawnAnEnemy();
 		}
@@ -50,12 +53,21 @@ public class GlobalBehavior : MonoBehaviour {
 		if (Input.GetButtonUp("Jump")) {
 			movement = !movement;
 		}
-		//left alt key added to go back to main menu
+		*/
 		if (Input.GetButtonUp("Fire2")) {
 			Application.LoadLevel(0);
-		}		
+		}
 		
-		info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount;
+		float lshots = Mathf.Max(shots, 1);
+		float score = Mathf.Min(((hits / lshots * 100) * (deadline / Time.time)), 100);
+		
+		if (enemyCount == 0) {
+			// add end level dialog
+			info.text = "Victory!";
+		}
+		else {
+			info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount + "\nscore: " + score;
+		}
 	}
 	
 	#region game window world size bound support
