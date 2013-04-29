@@ -29,57 +29,59 @@ public class AboutMenu : MonoBehaviour
 		box.NormalTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		box.ActiveTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		box.HoverTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
-		box.Style.fontSize = (int)(Screen.width * 0.08f); 
+		box.Style.fontSize = (int)(Screen.width * 0.1f); 
 	
-		backButton = new Button(box.Width/2f - box.Width*0.3f/2f, box.Height * 0.25f);
+		backButton = new Button(box.Width / 2 - box.Width * 0.3f / 2, box.Height * 0.2f);
 		backButton.Width = box.Width * 0.3f;
-		backButton.Height = backButton.Width * 0.25f;
-		backButton.Text = "Return to Main Menu";
-		backButton.HoverTexture = Resources.Load ("Textures/menu-run") as Texture2D;
+		backButton.Height = backButton.Width * 0.5f;
+		backButton.Text = "Main Menu";
+		backButton.HoverTexture = Resources.Load ("Textures/menu-hover") as Texture2D;
+		backButton.NormalTexture = Resources.Load ("Textures/menu-normal") as Texture2D;
+		backButton.ActiveTexture = Resources.Load ("Textures/menu-active") as Texture2D;
 		backButton.Style.alignment = TextAnchor.MiddleCenter;
+		backButton.Style.fontSize = (int)(Screen.width * 0.05f);
 	
-		nameLabel = new Label(box.Width/2f - backButton.Width*1.5f/2, backButton.Y + backButton.Height * 1.2f);
+		nameLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, backButton.Y + backButton.Height * 0.8f);
 		nameLabel.Width = backButton.Width * 1.5f;
 		nameLabel.Height = backButton.Height * 0.8f;
 		nameLabel.Text = "PositiveGames";
 		nameLabel.Style.alignment = TextAnchor.MiddleCenter;
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.08f);
 		
-		member1Label = new Label(box.Width/2f - backButton.Width*1.5f/2, nameLabel.Y + nameLabel.Height * 1.2f);
+		member1Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, nameLabel.Y + nameLabel.Height * 0.5f);
 		member1Label.Width = backButton.Width * 1.5f;
-		member1Label.Height = backButton.Height*0.6f;
+		member1Label.Height = backButton.Height * 0.6f;
 		member1Label.Text = "Ben Spencer";
 		member1Label.Style.alignment = TextAnchor.MiddleCenter;
 		member1Label.Style.fontSize = (int)(member1Label.Width * 0.06f);
 		
-		member2Label = new Label(box.Width/2f - backButton.Width*1.5f/2, member1Label.Y + member1Label.Height * 1.2f);
+		member2Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member1Label.Y + member1Label.Height * 0.5f);
 		member2Label.Width = backButton.Width * 1.5f;
-		member2Label.Height = backButton.Height*0.6f;
+		member2Label.Height = backButton.Height * 0.6f;
 		member2Label.Text = "Kelvin Campbell";
 		member2Label.Style.alignment = TextAnchor.MiddleCenter;
 		member2Label.Style.fontSize = (int)(member2Label.Width * 0.06f);
 		
-		member3Label = new Label(box.Width/2f - backButton.Width*1.5f/2, member2Label.Y + member2Label.Height * 1.2f);
+		member3Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member2Label.Y + member2Label.Height * 0.5f);
 		member3Label.Width = backButton.Width * 1.5f;
-		member3Label.Height = backButton.Height*0.6f;
+		member3Label.Height = backButton.Height * 0.6f;
 		member3Label.Text = "Michael Plotke";
 		member3Label.Style.alignment = TextAnchor.MiddleCenter;
 		member3Label.Style.fontSize = (int)(member3Label.Width * 0.06f);
 		
-		dateLabel = new Label(box.Width/2f - backButton.Width*1.5f/2, member3Label.Y + member3Label.Height * 1.2f);
+		dateLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member3Label.Y + member3Label.Height * 0.5f);
 		dateLabel.Width = backButton.Width * 1.5f;
-		dateLabel.Height = backButton.Height*0.6f;
+		dateLabel.Height = backButton.Height * 0.6f;
 		dateLabel.Text = "May 1, 2013";
 		dateLabel.Style.alignment = TextAnchor.MiddleCenter;
 		dateLabel.Style.fontSize = (int)(dateLabel.Width * 0.06f);
 		
-		label = new Label(box.Width/2f - backButton.Width*1.5f/2, dateLabel.Y + dateLabel.Height * 1.2f);
+		label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, dateLabel.Y + dateLabel.Height * 0.5f);
 		label.Width = backButton.Width * 1.5f;
-		label.Height = backButton.Height*0.6f;
+		label.Height = backButton.Height * 0.6f;
 		label.Text = DEFAULT_LABEL_TEXT;
 		label.Style.alignment = TextAnchor.MiddleCenter;
 		label.Style.fontSize = (int)(label.Width * 0.06f);
-		
 	}
 	
 	// Update is called once per frame
