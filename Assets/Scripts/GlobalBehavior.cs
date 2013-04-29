@@ -14,7 +14,8 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	private bool movement = true;
 	
-	private GUIText info = null;
+	//private GUIText info = null;
+	private Box info;
 	public int enemyCount = 0;
 	public int eggCount = 0;
 	
@@ -25,6 +26,20 @@ public class GlobalBehavior : MonoBehaviour {
 	public int shots = 0;
 	public int hits = 0;
 	//score = ((hits/shots)*100)+deadline/Time.timeSinceLevelLoad
+	
+	//custom score display
+	private GameObject scoreCube = null;
+	private GameObject enemyHundreds;
+	private GameObject enemyTens;
+	private GameObject enemyOnes;
+	
+	private GameObject eggHundreds;
+	private GameObject eggTens;
+	private GameObject eggOnes;
+	
+	private GameObject scoreHundreds;
+	private GameObject scoreTens;
+	private GameObject scoreOnes;
 	
 	// initialization
 	void Start () {
@@ -38,7 +53,42 @@ public class GlobalBehavior : MonoBehaviour {
 			enemyCount++;
 		}
 		
-		info = GameObject.Find("InfoText").GetComponent<GUIText>();
+		//info = GameObject.Find("InfoText").GetComponent<GUIText>();
+		//using CustomGUI box for textures but not text
+		info = new Box(5f,5f,115f,104f);
+		info.AllStyleColor = Color.yellow;
+		Texture2D scoreSheet = Resources.Load ("Textures/score") as Texture2D;
+		info.NormalTexture = scoreSheet;
+		info.HoverTexture = scoreSheet;
+		info.ActiveTexture = scoreSheet;
+		
+		//custom scoring 
+		scoreCube = Resources.Load ("Prefabs/NumberCube") as GameObject;
+		
+		enemyHundreds = (GameObject) Instantiate (scoreCube);
+		enemyTens = (GameObject) Instantiate (scoreCube);
+		enemyOnes = (GameObject) Instantiate (scoreCube);
+		enemyHundreds.transform.position = new Vector3 (worldBounds.min.x+35f,0.1f,worldBounds.max.z - 13f);
+		enemyTens.transform.position = new Vector3 (worldBounds.min.x+43f,0.1f,worldBounds.max.z - 13f);
+		enemyOnes.transform.position = new Vector3 (worldBounds.min.x+51f,0.1f,worldBounds.max.z - 13f);
+		
+		eggHundreds = (GameObject) Instantiate (scoreCube);
+		eggTens = (GameObject) Instantiate (scoreCube);
+		eggOnes = (GameObject) Instantiate (scoreCube);
+		eggHundreds.transform.position = new Vector3 (worldBounds.min.x+35f,0.1f,worldBounds.max.z - 30f);
+		eggTens.transform.position = new Vector3 (worldBounds.min.x+43f,0.1f,worldBounds.max.z - 30f);
+		eggOnes.transform.position = new Vector3 (worldBounds.min.x+51f,0.1f,worldBounds.max.z - 30f);
+		
+		scoreHundreds = (GameObject) Instantiate (scoreCube);
+		scoreTens = (GameObject) Instantiate (scoreCube);
+		scoreOnes = (GameObject) Instantiate (scoreCube);
+		scoreHundreds.transform.position = new Vector3 (worldBounds.min.x+35f,0.1f,worldBounds.max.z - 47f);
+		scoreTens.transform.position = new Vector3 (worldBounds.min.x+43f,0.1f,worldBounds.max.z - 47f);
+		scoreOnes.transform.position = new Vector3 (worldBounds.min.x+51f,0.1f,worldBounds.max.z - 47f);
+	}
+	
+	void OnGUI(){
+		info.OnGUI();
 	}
 	
 	public bool Movement { get { return movement; } }
@@ -63,13 +113,85 @@ public class GlobalBehavior : MonoBehaviour {
 		
 		if (enemyCount == 0) {
 			// add end level dialog
-			info.text = "Victory!";
+			//info.text = "Victory!";
 			Application.LoadLevel(3);
 		}
 		else {
-			info.text = "enemy count: " + enemyCount +
-				"\negg count: " + eggCount +
-				"\nscore: " + Mathf.CeilToInt(score);
+			//info.text = "enemy count: " + enemyCount +
+		//		"\negg count: " + eggCount +
+		//		"\nscore: " + Mathf.CeilToInt(score);
+			UpdateMainScore(score);
+		}
+		UpdateEnemyScore (enemyCount);
+		UpdateEggScore(eggCount);
+	}
+	
+	//functions to update scoring
+	public void UpdateEnemyScore(int enemy){
+		int nOnes = enemy % 10;
+		float nOnesTextureOffset = nOnes /10f;
+		enemyOnes.renderer.material.mainTextureOffset = new Vector2(nOnesTextureOffset,0.0f);
+		enemy = enemy/10;
+		if (enemy > 0){
+			int nTens = enemy % 10;
+			float nTensTextureOffset = nTens /10f;
+			enemyTens.renderer.material.mainTextureOffset = new Vector2(nTensTextureOffset,0.0f);
+			enemy = enemy/10;
+		} else { 
+			enemyTens.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
+		}
+		if (enemy > 0){
+			int nHundreds = enemy % 10;
+			float nHundredsTextureOffset = nHundreds /10f;
+			enemyHundreds.renderer.material.mainTextureOffset = new Vector2(nHundredsTextureOffset,0.0f);
+			enemy = enemy/10;
+		} else { 
+			enemyHundreds.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
+		}
+	}
+	public void UpdateEggScore(int eggs){
+		int nOnes = eggs % 10;
+		float nOnesTextureOffset = nOnes /10f;
+		eggOnes.renderer.material.mainTextureOffset = new Vector2(nOnesTextureOffset,0.0f);
+		eggs = eggs/10;
+		if (eggs > 0){
+			int nTens = eggs % 10;
+			float nTensTextureOffset = nTens /10f;
+			eggTens.renderer.material.mainTextureOffset = new Vector2(nTensTextureOffset,0.0f);
+			eggs = eggs/10;
+		} else { 
+			eggTens.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
+		}
+		if (eggs > 0){
+			int nHundreds = eggs % 10;
+			float nHundredsTextureOffset = nHundreds /10f;
+			eggHundreds.renderer.material.mainTextureOffset = new Vector2(nHundredsTextureOffset,0.0f);
+			eggs = eggs/10;
+		} else { 
+			eggHundreds.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
+		}
+	}
+	public void UpdateMainScore(float score){
+		int scoreInt = (int) score;
+		int nOnes = (int) scoreInt % 10;
+		float nOnesTextureOffset = nOnes /10f;
+		scoreOnes.renderer.material.mainTextureOffset = new Vector2(nOnesTextureOffset,0.0f);
+		scoreInt = scoreInt/10;
+		if (scoreInt > 0){
+			int nTens = scoreInt % 10;
+			float nTensTextureOffset = nTens /10f;
+			scoreTens.renderer.material.mainTextureOffset = new Vector2(nTensTextureOffset,0.0f);
+			scoreInt = scoreInt/10;
+		} else { 
+			scoreTens.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
+		}
+		if (scoreInt > 0){
+			int nHundreds = scoreInt % 10;
+			float nHundredsTextureOffset = nHundreds /10f;
+			scoreHundreds.renderer.material.mainTextureOffset = new Vector2(nHundredsTextureOffset,0.0f);
+			scoreInt = scoreInt/10;
+		} else { 
+			scoreHundreds.renderer.material.mainTextureOffset = new Vector2(0.0f,0.0f);
 		}
 	}
 	
