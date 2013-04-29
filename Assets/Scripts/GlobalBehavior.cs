@@ -66,7 +66,9 @@ public class GlobalBehavior : MonoBehaviour {
 			info.text = "Victory!";
 		}
 		else {
-			info.text = "enemy count: " + enemyCount + "\negg count: " + eggCount + "\nscore: " + score;
+			info.text = "enemy count: " + enemyCount +
+				"\negg count: " + eggCount +
+				"\nscore: " + Mathf.CeilToInt(score);
 		}
 	}
 	
