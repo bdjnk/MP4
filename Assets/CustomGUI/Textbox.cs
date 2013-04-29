@@ -50,9 +50,9 @@ public class Textbox : CustomGUI
 
     protected override bool Update()
     {
-		style.normal.textColor = Color.white;
-		style.active.textColor = Color.white;
-		style.hover.textColor = Color.white;
+		//style.normal.textColor = Color.white;
+		//style.active.textColor = Color.white;
+		//style.hover.textColor = Color.white;
 		//if maximum length is specified
         if (maxLength != -1)
 		{

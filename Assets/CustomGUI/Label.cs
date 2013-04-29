@@ -33,9 +33,9 @@ public Label()
 
     protected override bool Update()
     {
-		style.normal.textColor = Color.white;
-		style.active.textColor = Color.white;
-		style.hover.textColor = Color.white;
+		//style.normal.textColor = Color.white;
+		//style.active.textColor = Color.white;
+		//style.hover.textColor = Color.white;
 		GUI.Label(rect, text, style);
 		return false;
     }

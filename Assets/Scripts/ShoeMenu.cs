@@ -23,6 +23,7 @@ public class ShoeMenu : MonoBehaviour
 		Texture2D boxTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		
 		box = new Box(0, 0);
+		box.AllStyleColor = Color.white;
 		box.Width = Screen.width;
 		box.Height = Screen.height;
 		box.Text = "Shoe Wars";
@@ -33,6 +34,7 @@ public class ShoeMenu : MonoBehaviour
 		box.Style.fontSize = (int)(Screen.width * 0.1f);
 		
 		nameLabel = new Label(box.Width / 2f - box.Width * 0.3f * 1.5f / 2, box.Height - 2f);
+		nameLabel.AllStyleColor = Color.white;
 		nameLabel.Width = box.Width * 0.3f * 1.5f;
 		nameLabel.Height = box.Width * 0.3f * 0.25f;
 		nameLabel.Text = "PositiveGames";
@@ -40,6 +42,7 @@ public class ShoeMenu : MonoBehaviour
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.1f);
 		
 		playButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, box.Height * 0.2f);
+		playButton.AllStyleColor = Color.white;
 		playButton.Width = box.Width * 0.3f;
 		playButton.Height = playButton.Width * 0.5f;
 		playButton.Text = "Play Game";
@@ -50,6 +53,7 @@ public class ShoeMenu : MonoBehaviour
 		playButton.Style.alignment = TextAnchor.MiddleCenter;
 	
 		quitButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, playButton.Y + playButton.Height);
+		quitButton.AllStyleColor = Color.white;
 		quitButton.Width = box.Width * 0.3f;
 		quitButton.Height = quitButton.Width * 0.5f;
 		quitButton.Text = "Quit";
@@ -60,6 +64,7 @@ public class ShoeMenu : MonoBehaviour
 		quitButton.Style.alignment = TextAnchor.MiddleCenter;
 		
 		aboutButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, quitButton.Y + quitButton.Height);
+		aboutButton.AllStyleColor = Color.white;
 		aboutButton.Width = box.Width * 0.3f;
 		aboutButton.Height = aboutButton.Width * 0.5f;
 		aboutButton.Text = "About";

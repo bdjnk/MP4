@@ -58,7 +58,7 @@ public abstract class CustomGUI
 		NormalTexture = Resources.Load (normalTextureDir) as Texture2D;
 		HoverTexture = Resources.Load (hoverTextureDir) as Texture2D;
 		ActiveTexture = Resources.Load (activeTextureDir) as Texture2D;
-       
+        
 	}
     #endregion
 
@@ -136,7 +136,41 @@ public abstract class CustomGUI
 			style = value;
 		}
 	}
-
+	public Color AllStyleColor {
+		set {
+			style.normal.textColor = value;
+			style.active.textColor = value;
+			style.hover.textColor = value;
+		}
+	}
+	
+	public Color NormalStyleColor {
+		get {
+			return style.normal.textColor;
+		}
+		set {
+			style.normal.textColor = value;
+		}
+	}
+	
+	public Color ActiveStyleColor {
+		get {
+			return style.active.textColor;
+		}
+		set {
+			style.active.textColor = value;
+		}
+	}
+	public Color HoverStyleColor {
+		get {
+			return style.hover.textColor;
+		}
+		set {
+			style.hover.textColor = value;
+		}
+	}
+	
+	
 	public Texture2D NormalTexture {
 		get {
 			return style.normal.background;

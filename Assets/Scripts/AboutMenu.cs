@@ -22,6 +22,7 @@ public class AboutMenu : MonoBehaviour
 	void Start () 
 	{
 		box = new Box(0, 0);
+		box.AllStyleColor = Color.white;
 		box.Width = Screen.width;
 		box.Height = Screen.height;
 		box.Text = "Shoe Wars";
@@ -32,6 +33,7 @@ public class AboutMenu : MonoBehaviour
 		box.Style.fontSize = (int)(Screen.width * 0.1f); 
 	
 		backButton = new Button(box.Width / 2 - box.Width * 0.3f / 2, box.Height * 0.2f);
+		backButton.AllStyleColor = Color.white;
 		backButton.Width = box.Width * 0.3f;
 		backButton.Height = backButton.Width * 0.5f;
 		backButton.Text = "Main Menu";
@@ -42,6 +44,7 @@ public class AboutMenu : MonoBehaviour
 		backButton.Style.fontSize = (int)(Screen.width * 0.05f);
 	
 		nameLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, backButton.Y + backButton.Height * 0.8f);
+		nameLabel.AllStyleColor = Color.white;
 		nameLabel.Width = backButton.Width * 1.5f;
 		nameLabel.Height = backButton.Height * 0.8f;
 		nameLabel.Text = "PositiveGames";
@@ -49,6 +52,7 @@ public class AboutMenu : MonoBehaviour
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.08f);
 		
 		member1Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, nameLabel.Y + nameLabel.Height * 0.5f);
+		member1Label.AllStyleColor = Color.white;
 		member1Label.Width = backButton.Width * 1.5f;
 		member1Label.Height = backButton.Height * 0.6f;
 		member1Label.Text = "Ben Spencer";
@@ -56,6 +60,7 @@ public class AboutMenu : MonoBehaviour
 		member1Label.Style.fontSize = (int)(member1Label.Width * 0.06f);
 		
 		member2Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member1Label.Y + member1Label.Height * 0.5f);
+		member2Label.AllStyleColor = Color.white;
 		member2Label.Width = backButton.Width * 1.5f;
 		member2Label.Height = backButton.Height * 0.6f;
 		member2Label.Text = "Kelvin Campbell";
@@ -63,6 +68,7 @@ public class AboutMenu : MonoBehaviour
 		member2Label.Style.fontSize = (int)(member2Label.Width * 0.06f);
 		
 		member3Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member2Label.Y + member2Label.Height * 0.5f);
+		member3Label.AllStyleColor = Color.white;
 		member3Label.Width = backButton.Width * 1.5f;
 		member3Label.Height = backButton.Height * 0.6f;
 		member3Label.Text = "Michael Plotke";
@@ -70,6 +76,7 @@ public class AboutMenu : MonoBehaviour
 		member3Label.Style.fontSize = (int)(member3Label.Width * 0.06f);
 		
 		dateLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member3Label.Y + member3Label.Height * 0.5f);
+		dateLabel.AllStyleColor = Color.white;
 		dateLabel.Width = backButton.Width * 1.5f;
 		dateLabel.Height = backButton.Height * 0.6f;
 		dateLabel.Text = "May 1, 2013";
@@ -77,6 +84,7 @@ public class AboutMenu : MonoBehaviour
 		dateLabel.Style.fontSize = (int)(dateLabel.Width * 0.06f);
 		
 		label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, dateLabel.Y + dateLabel.Height * 0.5f);
+		label.AllStyleColor = Color.white;
 		label.Width = backButton.Width * 1.5f;
 		label.Height = backButton.Height * 0.6f;
 		label.Text = DEFAULT_LABEL_TEXT;
@@ -87,7 +95,7 @@ public class AboutMenu : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-	
+		//Debug.Log("style color: " + box.NormalStyleColor);
 	}
 	
 	void OnGUI()
