@@ -39,6 +39,7 @@ public class EnemyBehavior : MonoBehaviour {
 		stunned = Resources.Load("Textures/stunned") as Texture;
 		
 		stunCount = 0;
+		gameObject.tag = "Enemy";
 		
 		NewDirection();
 	}

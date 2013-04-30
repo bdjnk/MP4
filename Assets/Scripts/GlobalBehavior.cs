@@ -19,14 +19,14 @@ public class GlobalBehavior : MonoBehaviour {
 	public int initialEnemyCount = 6;
 	
 	// these will be used to calculate score
-	private float deadline = 60 * 1f; // 60 * minutes
+	public float deadline = 60 * 1f; // 60 * minutes
 	public int shots = 0;
 	public int hits = 0;
 	
 	private GameObject endBox = null;
 	private Status status = Status.active;
 	
-	enum Status {
+	private enum Status {
 		active,
 		victory,
 		defeat
@@ -97,6 +97,11 @@ public class GlobalBehavior : MonoBehaviour {
 				endBox.SetActive(true);
 				GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
 				GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart the level";
+				
+				GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+				foreach (GameObject enemy in enemies) {
+					Destroy(enemy);
+				}
 			}
 			if (Input.GetButtonUp("Jump"))
 			{
