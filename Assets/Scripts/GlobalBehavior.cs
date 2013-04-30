@@ -19,6 +19,8 @@ public class GlobalBehavior : MonoBehaviour {
 	public int eggCount = 0;
 	
 	public int initialEnemyCount = 6;
+	public int initialLevel1EnemyCount = 3;
+	public int initialLevel2EnemyCount = 20;
 	
 	// these will be used to calculate score
 	private float deadline = 60 * 1f; // 60 * minutes
@@ -35,6 +37,13 @@ public class GlobalBehavior : MonoBehaviour {
 		// World bound support
 		worldBounds = new Bounds(Vector3.zero, Vector3.one);
 		UpdateWorldBounds();
+		
+		if(Application.loadedLevelName=="LevelOne"){
+			initialEnemyCount = initialLevel1EnemyCount;
+		}
+		if(Application.loadedLevelName=="LevelTwo"){
+			initialEnemyCount = initialLevel2EnemyCount;
+		}
 		
 		enemyPrefab = Resources.Load("Prefabs/Enemy") as GameObject;
 		for (int i = 0; i < initialEnemyCount; i++) {
