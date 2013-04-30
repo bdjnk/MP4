@@ -85,13 +85,14 @@ public class HeroBehavior : MonoBehaviour {
 					
 				GameObject egg = Instantiate(eggPrefab) as GameObject;
 				if (null != egg) {
+					if (Application.loadedLevel == 2) {
+						egg.transform.localScale = new Vector3(6f, 1f, 6f);
+					} 	
 					// this is stupid, figure out how to keep them layered right...
 					Vector3 pos = new Vector3(transform.position.x, -0.1f, transform.position.z);
 					egg.transform.position = pos;
 					egg.transform.forward = transform.forward;
-					if(Application.loadedLevelName=="LevelOne"){
-						egg.transform.localScale = new Vector3(6f,1f,6f);
-					} 					
+									
 					worldScript.eggCount++;
 					worldScript.shots++;
 				}

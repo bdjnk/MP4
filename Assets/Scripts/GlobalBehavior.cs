@@ -19,8 +19,6 @@ public class GlobalBehavior : MonoBehaviour {
 	public int eggCount = 0;
 	
 	public int initialEnemyCount = 6;
-	public int initialLevel1EnemyCount = 5;
-	public int initialLevel2EnemyCount = 20;
 	
 	// these will be used to calculate score
 	private float deadline = 60 * 1f; // 60 * minutes
@@ -28,8 +26,6 @@ public class GlobalBehavior : MonoBehaviour {
 	public int hits = 0;
 	
 	private GameObject endBox = null;
-	private GUIText endText = null;
-	
 	private bool victory = false;
 	
 	// initialization
@@ -37,13 +33,6 @@ public class GlobalBehavior : MonoBehaviour {
 		// World bound support
 		worldBounds = new Bounds(Vector3.zero, Vector3.one);
 		UpdateWorldBounds();
-		
-		if(Application.loadedLevelName=="LevelOne"){
-			initialEnemyCount = initialLevel1EnemyCount;
-		}
-		if(Application.loadedLevelName=="LevelTwo"){
-			initialEnemyCount = initialLevel2EnemyCount;
-		}
 		
 		enemyPrefab = Resources.Load("Prefabs/Enemy") as GameObject;
 		for (int i = 0; i < initialEnemyCount; i++) {
@@ -93,7 +82,7 @@ public class GlobalBehavior : MonoBehaviour {
 						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to proceed";
 					}
 					else {
-						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to end the game";
+						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to return to the menu";
 					}
 				}
 				else {
@@ -109,7 +98,7 @@ public class GlobalBehavior : MonoBehaviour {
 						Application.LoadLevel(3);
 					}
 					else {
-						Application.Quit();
+						Application.LoadLevel(0);
 					}
 				}
 				else {
