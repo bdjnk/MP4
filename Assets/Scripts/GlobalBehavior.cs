@@ -68,6 +68,11 @@ public class GlobalBehavior : MonoBehaviour {
 			+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
 			+ "\ntime\t\t\t\t\t" + Mathf.Max(Mathf.RoundToInt(deadline - Time.time), 0);
 		
+		/*if(deadline <= 0){
+			GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
+			GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart level";	
+		}*/
+		
 		if (enemyCount == 0) {
 			if (victory || deadline - Time.time > 0) {
 				victory = true;
