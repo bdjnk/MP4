@@ -125,7 +125,9 @@ public class EnemyBehavior : MonoBehaviour {
 				Vector3 pos = new Vector3(transform.position.x, 1f, transform.position.z);
 				Instantiate(explosion, pos, Quaternion.identity);
 				Destroy(gameObject);
-				worldScript.enemyCount--;
+				if (worldScript.enemyCount > 0) { // shouldn't be neccessary
+					worldScript.enemyCount--;
+				}
 			}
 			else {
 				renderer.material.mainTexture = stunned;

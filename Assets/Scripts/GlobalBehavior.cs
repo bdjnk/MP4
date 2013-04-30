@@ -21,10 +21,14 @@ public class GlobalBehavior : MonoBehaviour {
 	public int initialEnemyCount = 6;
 	
 	// these will be used to calculate score
-	private float deadline = 60 * 2; // 60 * minutes
+	private float deadline = 60 * 1f; // 60 * minutes
 	public int shots = 0;
 	public int hits = 0;
-	//score = ((hits/shots)*100)*deadline/Time.timeSinceLevelLoad
+	
+	private GameObject endBox = null;
+	private GUIText endText = null;
+	
+	private bool victory = false;
 	
 	// initialization
 	void Start () {
@@ -41,6 +45,9 @@ public class GlobalBehavior : MonoBehaviour {
 		deadline = Time.time + deadline;
 		
 		info = GameObject.Find("InfoText").GetComponent<GUIText>();
+		
+		endBox = GameObject.Find("EndBox");
+		endBox.SetActive(false);
 	}
 	
 	public bool Movement { get { return movement; } }
@@ -59,15 +66,47 @@ public class GlobalBehavior : MonoBehaviour {
 		if (Input.GetButtonUp("Fire2")) {
 			Application.LoadLevel(0);
 		}
+		info.text = "enemies\t\t" + enemyCount + "\neggs\t\t\t\t\t" + eggCount
+			+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
+			+ "\ntime\t\t\t\t\t" + Mathf.Max(Mathf.RoundToInt(deadline - Time.time), 0);
 		
 		if (enemyCount == 0) {
-			// add end level dialog
-			//Application.LoadLevel(3);
-		}
-		else {
-			info.text = "enemies\t\t" + enemyCount + "\neggs\t\t\t\t\t" + eggCount
-				+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
-				+ "\ntime\t\t\t\t\t" + Mathf.RoundToInt(deadline - Time.time);
+			if (victory || deadline - Time.time > 0) {
+				victory = true;
+			}
+			
+			if (!endBox.activeInHierarchy) {
+				endBox.SetActive(true);
+				if (victory) {
+					GameObject.Find("EndText").GetComponent<GUIText>().text = "Victory!";
+					
+					if (Application.loadedLevel == 2) {
+						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to proceed";
+					}
+					else {
+						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to end the game";
+					}
+				}
+				else {
+					GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
+					GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart level";
+				}
+			}
+			
+			if (Input.GetButtonUp("Jump"))
+			{
+				if (victory) {
+					if (Application.loadedLevel == 2) {
+						Application.LoadLevel(3);
+					}
+					else {
+						Application.Quit();
+					}
+				}
+				else {
+					Application.LoadLevel(Application.loadedLevel);
+				}
+			}
 		}
 	}
 	
