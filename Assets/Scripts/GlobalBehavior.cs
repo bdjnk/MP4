@@ -19,7 +19,7 @@ public class GlobalBehavior : MonoBehaviour {
 	public int eggCount = 0;
 	
 	public int initialEnemyCount = 6;
-	public int initialLevel1EnemyCount = 3;
+	public int initialLevel1EnemyCount = 5;
 	public int initialLevel2EnemyCount = 20;
 	
 	// these will be used to calculate score

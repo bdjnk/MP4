@@ -89,7 +89,9 @@ public class HeroBehavior : MonoBehaviour {
 					Vector3 pos = new Vector3(transform.position.x, -0.1f, transform.position.z);
 					egg.transform.position = pos;
 					egg.transform.forward = transform.forward;
-					
+					if(Application.loadedLevelName=="LevelOne"){
+						egg.transform.localScale = new Vector3(6f,1f,6f);
+					} 					
 					worldScript.eggCount++;
 					worldScript.shots++;
 				}
