@@ -33,6 +33,7 @@ public class ShoeMenu : MonoBehaviour
 		box.Style.alignment = TextAnchor.UpperCenter;
 		box.Style.fontSize = (int)(Screen.width * 0.1f);
 		
+		//creates a Label for our team with various properties
 		nameLabel = new Label(box.Width / 2f - box.Width * 0.3f * 1.5f / 2, box.Height - 2f);
 		nameLabel.AllStyleColor = Color.white;
 		nameLabel.Width = box.Width * 0.3f * 1.5f;
@@ -41,6 +42,7 @@ public class ShoeMenu : MonoBehaviour
 		nameLabel.Style.alignment = TextAnchor.MiddleCenter;
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.1f);
 		
+		//creates a Play Button with various properties
 		playButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, box.Height * 0.2f);
 		playButton.AllStyleColor = Color.white;
 		playButton.Width = box.Width * 0.3f;
@@ -52,6 +54,7 @@ public class ShoeMenu : MonoBehaviour
 		playButton.ActiveTexture = active;
 		playButton.Style.alignment = TextAnchor.MiddleCenter;
 	
+		//creates a Quit Button with various properties
 		quitButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, playButton.Y + playButton.Height);
 		quitButton.AllStyleColor = Color.white;
 		quitButton.Width = box.Width * 0.3f;
@@ -63,6 +66,7 @@ public class ShoeMenu : MonoBehaviour
 		quitButton.ActiveTexture = active;
 		quitButton.Style.alignment = TextAnchor.MiddleCenter;
 		
+		//creates an About Button with various properties
 		aboutButton = new Button(box.Width / 2f - box.Width * 0.3f * 0.5f, quitButton.Y + quitButton.Height);
 		aboutButton.AllStyleColor = Color.white;
 		aboutButton.Width = box.Width * 0.3f;
@@ -100,6 +104,7 @@ public class ShoeMenu : MonoBehaviour
 		{
 			//label.Text = "Exit Game";
 			Application.Quit();
+			// application doesn't really quit for me. I can click it and nothing seems to change.
 		}
 		else if(aboutButton.Active)
 		{

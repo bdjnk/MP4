@@ -32,6 +32,7 @@ public class AboutMenu : MonoBehaviour
 		box.HoverTexture = Resources.Load ("Textures/shoesprite") as Texture2D;
 		box.Style.fontSize = (int)(Screen.width * 0.1f); 
 	
+		//creates a back button with various properties
 		backButton = new Button(box.Width / 2 - box.Width * 0.3f / 2, box.Height * 0.2f);
 		backButton.AllStyleColor = Color.white;
 		backButton.Width = box.Width * 0.3f;
@@ -43,6 +44,7 @@ public class AboutMenu : MonoBehaviour
 		backButton.Style.alignment = TextAnchor.MiddleCenter;
 		backButton.Style.fontSize = (int)(Screen.width * 0.05f);
 	
+		//creates a Label(Title) for our team name Positivegames with various properties
 		nameLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, backButton.Y + backButton.Height * 0.8f);
 		nameLabel.AllStyleColor = Color.white;
 		nameLabel.Width = backButton.Width * 1.5f;
@@ -51,6 +53,7 @@ public class AboutMenu : MonoBehaviour
 		nameLabel.Style.alignment = TextAnchor.MiddleCenter;
 		nameLabel.Style.fontSize = (int)(nameLabel.Width * 0.08f);
 		
+		//creates a Label for our team members with various properties
 		member1Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, nameLabel.Y + nameLabel.Height * 0.5f);
 		member1Label.AllStyleColor = Color.white;
 		member1Label.Width = backButton.Width * 1.5f;
@@ -59,6 +62,7 @@ public class AboutMenu : MonoBehaviour
 		member1Label.Style.alignment = TextAnchor.MiddleCenter;
 		member1Label.Style.fontSize = (int)(member1Label.Width * 0.06f);
 		
+		//creates a Label for our team members with various properties
 		member2Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member1Label.Y + member1Label.Height * 0.5f);
 		member2Label.AllStyleColor = Color.white;
 		member2Label.Width = backButton.Width * 1.5f;
@@ -67,6 +71,7 @@ public class AboutMenu : MonoBehaviour
 		member2Label.Style.alignment = TextAnchor.MiddleCenter;
 		member2Label.Style.fontSize = (int)(member2Label.Width * 0.06f);
 		
+		//creates a Label for our team members with various properties
 		member3Label = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member2Label.Y + member2Label.Height * 0.5f);
 		member3Label.AllStyleColor = Color.white;
 		member3Label.Width = backButton.Width * 1.5f;
@@ -75,6 +80,7 @@ public class AboutMenu : MonoBehaviour
 		member3Label.Style.alignment = TextAnchor.MiddleCenter;
 		member3Label.Style.fontSize = (int)(member3Label.Width * 0.06f);
 		
+		//creates a Label for the date with various properties
 		dateLabel = new Label(box.Width / 2 - backButton.Width * 1.5f / 2, member3Label.Y + member3Label.Height * 0.5f);
 		dateLabel.AllStyleColor = Color.white;
 		dateLabel.Width = backButton.Width * 1.5f;
