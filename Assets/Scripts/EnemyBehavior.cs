@@ -83,12 +83,10 @@ public class EnemyBehavior : MonoBehaviour {
 				renderer.material.mainTexture = run;
 			}
 			else {
-				if (worldScript.Movement) {
-					if (worldScript.WorldBoundCorrection(transform.collider.bounds) != transform.collider.bounds.center) {
-						NewDirection();
-					}
-					transform.position += (speed * Time.smoothDeltaTime) * transform.forward;
+				if (worldScript.WorldBoundCorrection(transform.collider.bounds) != transform.collider.bounds.center) {
+					NewDirection();
 				}
+				transform.position += (speed * Time.smoothDeltaTime) * transform.forward;
 			}
 		}
 	}

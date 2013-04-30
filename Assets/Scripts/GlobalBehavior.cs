@@ -12,8 +12,6 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	private GameObject enemyPrefab = null;
 	
-	private bool movement = true;
-	
 	private GUIText info = null;
 	public int enemyCount = 0;
 	public int eggCount = 0;
@@ -26,7 +24,13 @@ public class GlobalBehavior : MonoBehaviour {
 	public int hits = 0;
 	
 	private GameObject endBox = null;
-	private bool victory = false;
+	private Status status = Status.active;
+	
+	enum Status {
+		active,
+		victory,
+		defeat
+	};
 	
 	// initialization
 	void Start () {
@@ -48,19 +52,8 @@ public class GlobalBehavior : MonoBehaviour {
 		endBox.SetActive(false);
 	}
 	
-	public bool Movement { get { return movement; } }
-	
 	// called once per frame
 	void Update () {
-		/*
-		if (movement) {
-			SpawnAnEnemy();
-		}
-		
-		if (Input.GetButtonUp("Jump")) {
-			movement = !movement;
-		}
-		*/
 		if (Input.GetButtonUp("Fire2")) {
 			Application.LoadLevel(0);
 		}
@@ -68,48 +61,48 @@ public class GlobalBehavior : MonoBehaviour {
 			+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
 			+ "\ntime\t\t\t\t\t" + Mathf.Max(Mathf.RoundToInt(deadline - Time.time), 0);
 		
-		/*if(deadline <= 0){
-			GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
-			GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart level";	
-		}*/
-		
-		if (enemyCount == 0) {
-			if (victory || deadline - Time.time > 0) {
-				victory = true;
+		switch (status) {
+		case Status.active:
+			if (enemyCount == 0 && deadline - Time.time > 0) {
+				status = Status.victory;
 			}
-			
+			else if (deadline - Time.time < 0) {
+				status = Status.defeat;
+			}
+			break;
+		case Status.victory:
 			if (!endBox.activeInHierarchy) {
 				endBox.SetActive(true);
-				if (victory) {
-					GameObject.Find("EndText").GetComponent<GUIText>().text = "Victory!";
-					
-					if (Application.loadedLevel == 2) {
-						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to proceed";
-					}
-					else {
-						GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to return to the menu";
-					}
+				GameObject.Find("EndText").GetComponent<GUIText>().text = "Victory!";
+				
+				if (Application.loadedLevel == 2) {
+					GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to proceed";
 				}
 				else {
-					GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
-					GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart level";
+					GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to return to the menu";
 				}
 			}
-			
 			if (Input.GetButtonUp("Jump"))
 			{
-				if (victory) {
-					if (Application.loadedLevel == 2) {
-						Application.LoadLevel(3);
-					}
-					else {
-						Application.LoadLevel(0);
-					}
+				if (Application.loadedLevel == 2) {
+					Application.LoadLevel(3);
 				}
 				else {
-					Application.LoadLevel(Application.loadedLevel);
+					Application.LoadLevel(0);
 				}
 			}
+			break;
+		case Status.defeat:
+			if (!endBox.activeInHierarchy) {
+				endBox.SetActive(true);
+				GameObject.Find("EndText").GetComponent<GUIText>().text = "Defeat!";
+				GameObject.Find("NextText").GetComponent<GUIText>().text = "hit spacebar to restart the level";
+			}
+			if (Input.GetButtonUp("Jump"))
+			{
+				Application.LoadLevel(Application.loadedLevel);
+			}
+			break;
 		}
 	}
 	
