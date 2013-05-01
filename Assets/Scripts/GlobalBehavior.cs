@@ -62,9 +62,11 @@ public class GlobalBehavior : MonoBehaviour {
 		case Status.active:
 			if (enemyCount == 0 && deadline - Time.time > 0) {
 				status = Status.victory;
+				eggCount = 0;
 			}
 			else if (deadline - Time.time < 0) {
 				status = Status.defeat;
+				eggCount = 0;
 			}
 			info.text = "enemies\t\t" + enemyCount + "\neggs\t\t\t\t\t" + eggCount
 				+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"

@@ -16,6 +16,8 @@ public class EnemyBehavior : MonoBehaviour {
 	private float endStunTime = -1f; // 
 	private float stunInterval = 5f; // in seconds
 	
+	private bool destroyed;
+	
 	private GameObject explosion;
 	
 	private GlobalBehavior worldScript;
@@ -119,14 +121,13 @@ public class EnemyBehavior : MonoBehaviour {
 		if (other.gameObject.name == "Egg(Clone)") {
 			stunCount++;
 			endStunTime = Time.realtimeSinceStartup + stunInterval;
-			if (stunCount >= 3) {
+			if (stunCount >= 3 && !destroyed) {
 				// this is stupid, figure out how to keep them layered right...
 				Vector3 pos = new Vector3(transform.position.x, 1f, transform.position.z);
 				Instantiate(explosion, pos, Quaternion.identity);
 				Destroy(gameObject);
-				if (worldScript.enemyCount > 0) { // shouldn't be neccessary
-					worldScript.enemyCount--;
-				}
+				worldScript.enemyCount--;
+				destroyed = true;
 			}
 			else {
 				renderer.material.mainTexture = stunned;

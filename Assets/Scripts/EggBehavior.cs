@@ -4,6 +4,7 @@ using System.Collections;
 public class EggBehavior : MonoBehaviour {
 	
 	private float speed = 100f;
+	private bool destroyed;
 	
 	private GameObject splat;
 	
@@ -35,8 +36,8 @@ public class EggBehavior : MonoBehaviour {
 			Vector3 pos = new Vector3(transform.position.x, 1f, transform.position.z);
 			Instantiate(splat, pos, Quaternion.identity);
 			
-			Destroy(gameObject);
-			if (worldScript.eggCount > 0) { // shouldn't be neccessary
+			if (!destroyed) {
+				Destroy(gameObject);
 				worldScript.eggCount--;
 				worldScript.hits++;
 			}
