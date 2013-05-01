@@ -54,14 +54,11 @@ public class GlobalBehavior : MonoBehaviour {
 	
 	// called once per frame
 	void Update () {
-		if (Input.GetButtonUp("Fire2")) {
+		if (Input.GetButtonUp("Menu")) {
 			Application.LoadLevel(0);
 		}
-		info.text = "enemies\t\t" + enemyCount + "\neggs\t\t\t\t\t" + eggCount
-			+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
-			+ "\ntime\t\t\t\t\t" + Mathf.Max(Mathf.RoundToInt(deadline - Time.time), 0);
 		
-		switch (status) {
+		switch (status) { // finite state machine
 		case Status.active:
 			if (enemyCount == 0 && deadline - Time.time > 0) {
 				status = Status.victory;
@@ -69,6 +66,9 @@ public class GlobalBehavior : MonoBehaviour {
 			else if (deadline - Time.time < 0) {
 				status = Status.defeat;
 			}
+			info.text = "enemies\t\t" + enemyCount + "\neggs\t\t\t\t\t" + eggCount
+				+ "\naccuracy\t" + (100 * hits / Mathf.Max(shots, 1)) + "%"
+				+ "\ntime\t\t\t\t\t" + Mathf.Max(Mathf.RoundToInt(deadline - Time.time), 0);
 			break;
 		case Status.victory:
 			if (!endBox.activeInHierarchy) {
