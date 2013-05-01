@@ -1,4 +1,4 @@
-using UnityEngine;	
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -23,8 +23,8 @@ public class HeroBehavior : MonoBehaviour {
 	private SpriteActionDefinition walkUp = new SpriteActionDefinition(0, 2, 0, animationSpeed, true); 
 	private SpriteActionDefinition walkDown = new SpriteActionDefinition(1, 0, 2, animationSpeed, true);
 	
-	private SpriteActionDefinition walkLeft = new SpriteActionDefinition(0, 1, 0, animationSpeed, true);
-	private SpriteActionDefinition walkRight = new SpriteActionDefinition(0, 1, 2, animationSpeed, true);
+	//private SpriteActionDefinition walkLeft = new SpriteActionDefinition(0, 1, 0, animationSpeed, true);
+	//private SpriteActionDefinition walkRight = new SpriteActionDefinition(0, 1, 2, animationSpeed, true);
 	
 	private SpriteActionDefinition stop = new SpriteActionDefinition(2, 2, 2, animationSpeed, false); // to stop
 	
@@ -65,11 +65,10 @@ public class HeroBehavior : MonoBehaviour {
 		spriteManager.UpdateSpriteAnimation();
 		
 		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)) {
-			//if (Input.GetKeyDown(KeyCode.UpArrow) && !Input.GetKey(KeyCode.DownArrow)) {
+			
 			if (previousDirection <= 0 && Input.GetAxis("Vertical") > 0) {
 				spriteManager.SetSpriteAnimationAciton(walkUp);
 			}
-			//if (Input.GetKeyDown(KeyCode.DownArrow) && !Input.GetKey(KeyCode.UpArrow)) {
 			if (previousDirection >= 0 && Input.GetAxis("Vertical") < 0) {
 				spriteManager.SetSpriteAnimationAciton(walkDown);
 			}
@@ -84,7 +83,7 @@ public class HeroBehavior : MonoBehaviour {
 				preEggSpawnTime = Time.realtimeSinceStartup;
 					
 				GameObject egg = Instantiate(eggPrefab) as GameObject;
-				if (null != egg) {
+				if (egg != null) {
 					if (Application.loadedLevel == 2) {
 						egg.transform.localScale = new Vector3(6f, 1f, 6f);
 					} 	

@@ -4,16 +4,14 @@ using System.Collections;
 public class EggBehavior : MonoBehaviour {
 	
 	private float speed = 100f;
-	private bool destroyed;
+	private bool destroyed = false;
 	
 	private GameObject splat;
-	
 	private GlobalBehavior worldScript;
 	
 	// Use this for initialization
 	void Start () {
 		worldScript = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
-		
 		splat = Resources.Load("Prefabs/Splat") as GameObject;
 	}
 	
@@ -40,6 +38,7 @@ public class EggBehavior : MonoBehaviour {
 				Destroy(gameObject);
 				worldScript.eggCount--;
 				worldScript.hits++;
+				destroyed = true;
 			}
 		}
 	}

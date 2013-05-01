@@ -16,15 +16,13 @@ public class EnemyBehavior : MonoBehaviour {
 	private float endStunTime = -1f; // 
 	private float stunInterval = 5f; // in seconds
 	
-	private bool destroyed;
+	private bool destroyed = false;
 	
 	private GameObject explosion;
-	
 	private GlobalBehavior worldScript;
 
 	void Start () {
 		worldScript = GameObject.Find("GameManager").GetComponent<GlobalBehavior>();
-		
 		explosion = Resources.Load("Prefabs/Explosion") as GameObject;
 		
 		Bounds bounds = worldScript.WorldBounds;
